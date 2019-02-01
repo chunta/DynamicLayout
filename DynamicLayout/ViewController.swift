@@ -11,11 +11,10 @@ import Alamofire
 import AlamofireImage
 
 struct Magazine : Codable {
-    var albumId:Int
-    var id:Int
-    var title:String
-    var url:String
-    var des:String
+    let id:Int
+    let title:String!
+    let url:String!
+    let des:String!
 }
 
 struct Magazines: Codable {
@@ -82,7 +81,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         
         let lh:CGFloat = labelHeightMap[indexPath.section] ?? NormalTableViewCell.labelHeight()
         return h + lh + NormalTableViewCell.verticalSpace()
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
