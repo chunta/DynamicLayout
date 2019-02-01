@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_NewsLayoutVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_NewsLayoutVersionString[];
+FOUNDATION_EXPORT double Pods_DynamicLayoutVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_DynamicLayoutVersionString[];
 

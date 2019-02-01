@@ -99,19 +99,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         
         labelHeightMap[indexPath.section] = cell.title.bounds.size.height + cell.desc.bounds.size.height
         
-        let section:Int = indexPath.section
-        Alamofire.request(magazine.url).responseImage { response in
-                if let image = response.result.value {
-                    cell.imagev.image = image
-                    if (self.heightMap[section] == nil)
-                    {
-                        self.heightMap[section] = image.size
-                        tableView.beginUpdates()
-                        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
-                        tableView.endUpdates()
-                    }
-                }
+        let str:String = magazines!.content[indexPath.section].url
+        let url:URL = URL(string:str)!
+        let closureName = { (image : DataResponse<UIImage>) -> Void in
+            let indexpath:IndexPath? = self.tableView.indexPath(for: cell) ?? nil
+            if (indexpath != nil && self.heightMap[indexpath!.section] == nil)
+            {
+                self.heightMap[indexpath!.section] = image.result.value?.size
+                tableView.beginUpdates()
+                tableView.reloadSections(NSIndexSet(index: indexpath!.section) as IndexSet, with: .automatic)
+                tableView.endUpdates()
+            }
         }
+        cell.imagev.af_setImage(withURL: url, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: .crossDissolve(0.4), runImageTransitionIfCached: true, completion: closureName)
         
         return cell
     }
