@@ -105,7 +105,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         Alamofire.request(magazine.url).responseImage { response in
                 if let image = response.result.value {
                     cell.imagev.image = image
-                    if (self.heightMap[section] == nil && !tableView.isDragging && !tableView.isDecelerating)
+                    if (self.heightMap[section] == nil)
                     {
                         self.heightMap[section] = image.size
                         tableView.beginUpdates()
